@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Default template framework
     const DEFAULT_TEMPLATE = 
 `[notice]
-[center][size=150][b]Difficulty[/b][/size]
-[/center]
-[center]
+[centre][size=150][b]Difficulty[/b][/size]
+[/centre]
+[centre]
 
-[/center]
+[/centre]
 [/notice]`;
 
     // Initialize Editor if empty
@@ -129,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
             outputLine += ` by [color=#CFCFCF]Me[/color]`;
         }
 
-        // Add to Editor smartly: look for [/center]\n[/notice] to insert before it
+        // Add to Editor smartly: look for [/centre]\n[/notice] to insert before it
         const currentText = editor.value;
-        const insertTarget = '\n[/center]\n[/notice]';
+        const insertTarget = '\n[/centre]\n[/notice]';
         
         if (currentText.includes(insertTarget)) {
             // Insert right before the closing tags of the default template
