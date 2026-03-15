@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>osu! Difficulty Icons BBCode Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <header class="header">
+            <h1>osu! Difficulty Icons</h1>
+            <p>BBCode Generator & Live Preview</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Panel: Input Form -->
+            <section class="panel input-panel">
+                <div class="panel-header">
+                    <h2>Add Difficulty</h2>
+                </div>
+                <div class="panel-body">
+                    <form id="diff-form">
+                        <div class="form-group">
+                            <label for="gamemode">Game Mode</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gamemode" value="std" checked>
+                                    <span class="radio-button">osu!</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gamemode" value="taiko">
+                                    <span class="radio-button">Taiko</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gamemode" value="ctb">
+                                    <span class="radio-button">Catch</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gamemode" value="mania">
+                                    <span class="radio-button">Mania</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="star-rating">Star Rating (SR)</label>
+                                <input type="number" id="star-rating" name="star-rating" step="0.01" min="0" max="20"
+                                    placeholder="e.g. 5.37" required>
+                            </div>
+                            <div class="form-group half">
+                                <label for="diff-name">Difficulty Name</label>
+                                <input type="text" id="diff-name" name="diff-name" placeholder="e.g. Expert">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mapper-name">Mapper (Optional)</label>
+                            <input type="text" id="mapper-name" name="mapper-name" placeholder="e.g. Peppy">
+                        </div>
+
+                        <button type="submit" class="btn-primary">Generate BBCode</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Middle Panel: BBCode Editor -->
+            <section class="panel editor-panel">
+                <div class="panel-header">
+                    <h2>BBCode Editor</h2>
+                    <div class="actions">
+                        <button id="btn-copy" class="btn-icon" title="Copy to Clipboard">Copy</button>
+                        <button id="btn-clear" class="btn-icon" title="Clear Editor">Clear</button>
+                    </div>
+                </div>
+                <div class="panel-body full-height">
+                    <div class="bbcode-toolbar">
+                        <button type="button" class="toolbar-btn" data-tag="b" title="Bold"><b>B</b></button>
+                        <button type="button" class="toolbar-btn" data-tag="i" title="Italic"><i>I</i></button>
+                        <button type="button" class="toolbar-btn" data-tag="u" title="Underline"><u>U</u></button>
+                        <button type="button" class="toolbar-btn" data-tag="s" title="Strikethrough"><s>S</s></button>
+                        <div class="toolbar-divider"></div>
+                        <button type="button" class="toolbar-btn" data-tag="url" title="Link">Link</button>
+                        <button type="button" class="toolbar-btn" data-tag="img" title="Image">Img</button>
+                        <div class="toolbar-divider"></div>
+                        <button type="button" class="toolbar-btn" data-tag="center" title="Center">Center</button>
+                        <button type="button" class="toolbar-btn" data-tag="size" title="Text Size">Size</button>
+                        <button type="button" class="toolbar-btn" data-tag="notice" title="Notice Box">Notice</button>
+                        <button type="button" class="toolbar-btn" data-tag="heading" title="Heading">Heading</button>
+                    </div>
+                    <textarea id="bbcode-input"
+                        placeholder="Your BBCode will appear here... Feel free to edit!"></textarea>
+                </div>
+            </section>
+
+            <!-- Right Panel: Live Preview -->
+            <section class="panel preview-panel">
+                <div class="panel-header">
+                    <h2>Live Preview</h2>
+                </div>
+                <div class="panel-body full-height preview-container">
+                    <div id="bbcode-preview" class="osu-forum-preview">
+                        <!-- Parsed HTML will be inserted here -->
+                        <span class="placeholder-text">Preview will appear here...</span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

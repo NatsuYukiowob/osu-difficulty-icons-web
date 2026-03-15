@@ -1,0 +1,333 @@
+:root {
+    --bg-main: #111111;
+    --bg-panel: #1e1e1e;
+    --bg-input: #2a2a2a;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --accent: #fc6fb6; /* osu! pink */
+    --accent-hover: #ff85c4;
+    --border: #333333;
+    --radius: 8px;
+    --transition: 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 300px 1fr 1fr;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+/* Panel Styles */
+.panel {
+    background-color: var(--bg-panel);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.panel-body {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.panel-body.full-height {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.half {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(252, 111, 182, 0.2);
+}
+
+/* Radio Buttons for GameMode */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.radio-label {
+    flex: 1;
+    min-width: 48%;
+    cursor: pointer;
+}
+
+.radio-label input {
+    display: none;
+}
+
+.radio-button {
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.radio-label input:checked + .radio-button {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 600;
+}
+
+.radio-label:hover input:not(:checked) + .radio-button {
+    border-color: var(--text-muted);
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-icon:hover {
+    color: var(--text-main);
+    border-color: var(--text-muted);
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* Textarea / BBCode Editor */
+.bbcode-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    align-items: center;
+}
+
+.toolbar-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-main);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.toolbar-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--border);
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 1.2rem;
+    background-color: var(--border);
+    margin: 0 0.5rem;
+}
+
+textarea {
+    width: 100%;
+    flex: 1;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.95rem;
+    padding: 1rem;
+    resize: none;
+    transition: var(--transition);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* Live Preview */
+.preview-container {
+    background-color: #262626; /* mimic osu forums */
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    overflow-y: auto;
+    font-family: 'Inter', sans-serif;
+    color: #dedede;
+    font-size: 13px; /* standard forum size */
+}
+
+.placeholder-text {
+    color: #666;
+    font-style: italic;
+}
+
+/* Basic osu BBCode Styles parsed output */
+.osu-forum-preview img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+.osu-forum-preview b, .osu-forum-preview strong {
+    font-weight: bold;
+}
+.osu-forum-preview i, .osu-forum-preview em {
+    font-style: italic;
+}
+.osu-forum-preview u {
+    text-decoration: underline;
+}
+.osu-forum-preview s {
+    text-decoration: line-through;
+}
+.osu-forum-preview a {
+    color: #88b1dd;
+    text-decoration: none;
+}
+.osu-forum-preview a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 400px 400px;
+    }
+}
