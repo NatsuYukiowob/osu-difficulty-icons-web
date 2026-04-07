@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Construct Formatting String 
         let outputLine = `${iconBbcode} [color=#${iconColorHex}]${diffName || 'Difficulty'}[/color]`;
-        outputLine += ` - [color=#${fancySrHex}]${srRaw}[/color][color=#FCFF5A]*[/color]`;
+        outputLine += ` - [color=#${fancySrHex}]${srRaw}[/color]`;
         
         if (mapper) {
             outputLine += ` by [profile]${mapper}[/profile]`;
@@ -207,6 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (tag === 'size') {
             openTag = `[size=150]`;
             editor.setRangeText(`${openTag}${selectedText}${closeTag}`, start, end, 'select');
+        } else if (tag === 'box') {
+            openTag = `[box=Title]`;
+            editor.setRangeText(`${openTag}${selectedText}${closeTag}`, start, end, 'select');
         } else {
             editor.setRangeText(`${openTag}${selectedText}${closeTag}`, start, end, 'select');
         }
@@ -274,8 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // [center] / [centre]
         html = html.replace(/\[cent(?:er|re)\]([\s\S]*?)\[\/cent(?:er|re)\]/gi, "<div style=\"text-align:center\">$1</div>");
 
-        // [notice] / [box]
+        // [notice]
         html = html.replace(/\[notice\]([\s\S]*?)\[\/notice\]/gi, "<fieldset style=\"border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 4px; margin: 10px 0;\">$1</fieldset>");
+
+        // [box=Name]content[/box]
+        html = html.replace(/\[box=([^\]]+)\]([\s\S]*?)\[\/box\]/gi, "<details class=\"osu-bbcode-box\"><summary>$1</summary><div class=\"box-content\">$2</div></details>");
+
+        // [box]content[/box]
+        html = html.replace(/\[box\]([\s\S]*?)\[\/box\]/gi, "<details class=\"osu-bbcode-box\"><summary>Spoiler</summary><div class=\"box-content\">$1</div></details>");
 
         // [heading] (usually renders big text in osu)
         html = html.replace(/\[heading\]([\s\S]*?)\[\/heading\]/gi, "<h2 style=\"font-size: 1.5em; margin: 10px 0; border: none;\">$1</h2>");
@@ -285,6 +294,19 @@ document.addEventListener('DOMContentLoaded', () => {
         html = html.replace(/\n/g, '<br/>');
 
         return html;
+    }
+
+    // === 6. Dynamic Background Glow (Removed) ===
+
+    // === 7. Toggle Side Panel Logic ===
+    const btnTogglePanel = document.getElementById('btn-toggle-panel');
+    const inputPanel = document.getElementById('input-panel');
+
+    if (btnTogglePanel && inputPanel) {
+        btnTogglePanel.addEventListener('click', () => {
+            inputPanel.classList.toggle('collapsed');
+            btnTogglePanel.classList.toggle('collapsed');
+        });
     }
 
 });
